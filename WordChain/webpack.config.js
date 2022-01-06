@@ -1,4 +1,5 @@
 const path = require('path');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
     name: 'word-chain-setting',
@@ -18,12 +19,24 @@ module.exports = {
             loader: 'babel-loader',
             options: {
                 presets: ['@babel/env','@babel/react'],
-                plugins: ['@babel/plugin-proposal-class-properties']
+                plugins: [
+                    '@babel/plugin-proposal-class-properties',
+                    'react-refresh/babel',
+                ]
             }
         }],
     },
+    plugins: [
+        new RefreshWebpackPlugin()
+    ],
     output: { // 출력
         path: path.join(__dirname, 'dist'),
         filename: 'app.js',
+        publicPath: '/dist/',
+    },
+    devServer: {
+        devMiddleware: { publicPath: '/dist/' },
+        static: { directory: path.resolve(__dirname) },
+        hot: true,
     },
 };
