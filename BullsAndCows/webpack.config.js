@@ -1,5 +1,5 @@
-import path from 'path';
-import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+const path = require('path');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
     name: 'bulls-and-cows',
