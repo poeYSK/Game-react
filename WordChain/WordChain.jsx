@@ -11,7 +11,7 @@ const WordChain = () => {
         e.preventDefault();
         // word의 끝 음절과 value의 첫 음절이 같은 경우
         if(word[word.length - 1] === value[0]) {
-            setResult('정답');
+            setResult('정답 ( ' + word + ' )');
             setWord(value);
             setValue('');
             inputRef.current.focus();
