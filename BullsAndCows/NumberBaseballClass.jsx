@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Try from './Try';
+import TryClass from './TryClass';
 
 function getNumbers() {
     // 숫자 4개를 겹치지 않고 랜덤으로 뽑는 함수
@@ -12,7 +12,7 @@ function getNumbers() {
     return array;
 }
 
-class NumberBaseball extends Component {
+class NumberBaseballClass extends Component {
     state = {
         result: '',
         value: '',
@@ -21,12 +21,14 @@ class NumberBaseball extends Component {
     };
 
     onSubmitForm = (e) => {
-        const { value, tries, answer } = this.state
+        const { value, tries, answer } = this.state;
         e.preventDefault();
         if (value === answer.join('')) {
-            this.setState({
-                result: '홈런!',
-                tries: [...tries, { try: value, result: '홈런!' }],
+            this.setState((prevState) => {
+                return {
+                    result: '홈런!',
+                    tries: [...prevState.tries, { try: value, result: '홈런!' }],
+                };
             });
             this.setState({
                 value: '',
@@ -50,15 +52,17 @@ class NumberBaseball extends Component {
                 });
             } else {
                 for (let i = 0; i < 4; i += 1) {
-                    if (answerArray[i] === this.state.answer[i]) {
+                    if (answerArray[i] === answer[i]) {
                         strike += 1;
                     } else if (answer.includes(answerArray[i])) {
                         ball += 1;
                     }
                 }
-                this.setState({
-                    tries: [...tries, { try: value, result: `${strike}S${ball}B` }],
-                    value: '',
+                this.setState((prevState)=>{
+                    return {
+                        tries: [...prevState.tries, { try: value, result: `${strike}S${ball}B` }],
+                        value: ''
+                    }
                 });
             }
         }
@@ -83,7 +87,7 @@ class NumberBaseball extends Component {
                 <ul>
                     {tries.map((v, i) => {
                         return (
-                            <Try key={`${i + 1}차 시도`} tryInfo={v} />
+                            <TryClass key={`${i + 1}차 시도`} tryInfo={v} />
                         );
                     })}
                 </ul>
@@ -92,4 +96,4 @@ class NumberBaseball extends Component {
     }
 }
 
-export default NumberBaseball;
+export default NumberBaseballClass;
