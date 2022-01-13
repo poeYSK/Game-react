@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import TryHooks from './TryHooks';
 
 function getNumbers() {
+    console.log("number");
     // 숫자 4개를 겹치지 않고 랜덤으로 뽑는 함수
     const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const array = [];
@@ -11,7 +12,7 @@ function getNumbers() {
     }
     return array;
 }
-const NumberBaseBallHooks = () => {
+const NumberBaseBallHooks = memo(() => {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
@@ -29,6 +30,7 @@ const NumberBaseBallHooks = () => {
             setValue('');
             setAnswer(getNumbers());
             setTries([]);
+            onRefInput.current.focus();
         } else {
             const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
@@ -51,6 +53,7 @@ const NumberBaseBallHooks = () => {
                     return [...prevTries, { try: value, result: `${strike}S${ball}B` }];
                 })
             }
+            onRefInput.current.focus();
         }
     };
 
@@ -74,6 +77,6 @@ const NumberBaseBallHooks = () => {
             </ul>
         </>
     );
-};
+});
 
 export default NumberBaseBallHooks;

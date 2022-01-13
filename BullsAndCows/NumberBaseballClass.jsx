@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import TryClass from './TryClass';
 
 function getNumbers() {
@@ -12,7 +12,7 @@ function getNumbers() {
     return array;
 }
 
-class NumberBaseballClass extends Component {
+class NumberBaseballClass extends PureComponent {
     state = {
         result: '',
         value: '',
@@ -36,6 +36,7 @@ class NumberBaseballClass extends Component {
                 tries: [],
             });
             alert('홈런!!!');
+            this.inputRef.current.focus();
         } else {
             const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
@@ -65,6 +66,7 @@ class NumberBaseballClass extends Component {
                     }
                 });
             }
+            this.inputRef.current.focus();
         }
     };
 
@@ -75,13 +77,15 @@ class NumberBaseballClass extends Component {
         });
     };
 
+    inputRef = createRef();
+
     render() {
         const { result, value, tries } = this.state;
         return (
             <>
                 <h1>{result}</h1>
                 <form onSubmit={this.onSubmitForm}>
-                    <input maxLength={4} value={value} onChange={this.onChangeInput} />
+                    <input maxLength={4} value={value} onChange={this.onChangeInput} ref={this.inputRef}/>
                 </form>
                 <div>시도: {tries.length}</div>
                 <ul>
