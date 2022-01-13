@@ -21,12 +21,12 @@ class NumberBaseball extends Component {
     };
 
     onSubmitForm = (e) => {
-        const {result, value, tries, answer} = this.state
+        const { value, tries, answer } = this.state
         e.preventDefault();
         if (value === answer.join('')) {
             this.setState({
                 result: '홈런!',
-                tries: [...this.state.tries, { try: value, result: '홈런!' }],
+                tries: [...tries, { try: value, result: '홈런!' }],
             });
             this.setState({
                 value: '',
@@ -52,7 +52,7 @@ class NumberBaseball extends Component {
                 for (let i = 0; i < 4; i += 1) {
                     if (answerArray[i] === this.state.answer[i]) {
                         strike += 1;
-                    } else if (this.state.answer.includes(answerArray[i])) {
+                    } else if (answer.includes(answerArray[i])) {
                         ball += 1;
                     }
                 }
@@ -72,7 +72,7 @@ class NumberBaseball extends Component {
     };
 
     render() {
-        const {result, value, tries} = this.state;
+        const { result, value, tries } = this.state;
         return (
             <>
                 <h1>{result}</h1>
