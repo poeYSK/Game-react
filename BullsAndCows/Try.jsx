@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 
 class Try extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <li>
-                <b>{this.props.value.fruit}</b> - {this.props.index}
-                <div>컨텐츠0</div>
-                <div>컨텐츠1</div>
-                <div>컨텐츠2</div>
-                <div>컨텐츠3</div>
+                <div>{this.props.tryInfo.try}</div>
+                <div><b>{this.props.tryInfo.result}</b></div>
             </li>
         );
     }
