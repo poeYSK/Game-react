@@ -2,7 +2,7 @@ const path = require('path');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-    name: 'bulls-and-cows',
+    name: 'KSY',
     mode: 'development', // 실서비스: production
     devtool: 'eval',
     resolve: { // 확장자를 알아서 찾아줌.
